@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jesús Melero-Gomez | Profesor Investigador - UCV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-card: #121824;
+            --accent-cyan: #00f2fe;
+            --accent-green: #00ff87;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --gradient: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-green) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav ul a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Hero Section */
+        header {
+            padding: 8rem 2rem 4rem 2rem;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 242, 254, 0.05) 0%, rgba(11, 15, 25, 1) 70%);
+        }
+
+        .profile-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .profile-subtitle {
+            font-size: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .institution-tag {
+            background: rgba(0, 255, 135, 0.1);
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid rgba(0, 242, 254, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        h2 i {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.05);
+        }
+
+        .card-date {
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .card-subtitle {
+            color: var(--accent-green);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card ul li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .card ul li::before {
+            content: "•";
+            color: var(--accent-cyan);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        /* Info Complementaria */
+        .info-badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid rgba(0, 255, 135, 0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            background: rgba(0, 242, 254, 0.1);
+            padding: 1rem;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-text h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-text p, .contact-text a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .contact-text a:hover {
+            color: var(--accent-cyan);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .profile-title { font-size: 2.2rem; }
+            .profile-subtitle { font-size: 1.2rem; }
+            .contact-wrapper { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">JM</div>
+        <ul>
+            <li><a href="#investigacion">Investigación</a></li>
+            <li><a href="#docencia">Docencia</a></li>
+            <li><a href="#formacion">Formación</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1 class="profile-title">Jesús Melero-Gomez</h1>
+        <p class="profile-subtitle">Profesor Investigador UCV</p>
+        <div class="institution-tag">
+            <i class="fa-solid fa-microscope"></i> Instituto de Biomedicina Dr. Jacinto Convit
+        </div>
+    </header>
+
+    <section id="investigacion" class="container">
+        <h2><i class="fa-solid fa-dna"></i> Investigación y Experiencia Laboral</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-date">2022 - Actual</div>
+                <h3 class="card-title">Profesor Investigador</h3>
+                <h4 class="card-subtitle">Instituto de Biomedicina Dr. Jacinto Convit</h4>
+                <ul>
+                    <li>Aplicación de técnicas bioquímicas y moleculares para determinación de diagnóstico clínico y estudios epidemiológicos de Leishmaniasis.</li>
+                    <li>Evaluación de marcadores genéticos y bioquímicos para diferenciación de cepas de <i>Leishmania sp</i> multirresistentes a drogas.</li>
+                    <li>Evaluación de drogas con fines terapéuticos.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-date">2012 - Actual</div>
+                <h3 class="card-title">Biólogo Adjunto - Investigador</h3>
+                <h4 class="card-subtitle">Hospital Militar "Dr. Carlos Arvelo" | Depto. de Endocrinología</h4>
+                <ul>
+                    <li>Aplicación de técnicas bioquímicas y moleculares para determinación de diagnóstico clínico.</li>
+                    <li>Evaluación de marcadores bioquímicos para determinación de riesgo de padecimiento de enfermedades metabólicas.</li>
+                    <li>Evaluación de pruebas bioquímicas para determinación de Enfermedad Celíaca.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-date">Historial de Investigación</div>
+                <h3 class="card-title">Asistente de Investigación Científica</h3>
+                <h4 class="card-subtitle">Centros Nacionales de Excelencia</h4>
+                <ul>
+                    <li><b>Instituto Nacional de Higiene "Rafael Rangel":</b> Diagnóstico clínico molecular de enfermedades virales en el Laboratorio de Aislamiento Viral.</li>
+                    <li><b>IVIC:</b> Estudio molecular de <i>Mycobacterium tuberculosis</i> en el Departamento de Biología Estructural.</li>
+                    <li><b>Instituto de Medicina Tropical (UCV):</b> Aplicación de técnicas bioquímicas y moleculares para el estudio del parásito <i>Trypanosoma cruzi</i>.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="docencia" class="container" style="background: rgba(255,255,255,0.01); border-radius: 20px;">
+        <h2><i class="fa-solid fa-graduation-cap"></i> Experiencia Docente</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-date">2014 - Actual</div>
+                <h3 class="card-title">Docente Invitado</h3>
+                <h4 class="card-subtitle">Academia Militar de Medicina - Sede Hospital Militar</h4>
+                <ul>
+                    <li>Docente titular de las cátedras de Bioquímica y Biología Celular.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-date">Trayectoria Académica</div>
+                <h3 class="card-title">Docencia Universitaria y Educación Media</h3>
+                <h4 class="card-subtitle">UNEFA / Institutos Educativos</h4>
+                <ul>
+                    <li><b>UNEFA:</b> Profesor de Bioquímica y Microbiología, complementado con tutorías de Trabajo Comunitario.</li>
+                    <li><b>U.E. Colegio "La Concordia":</b> Profesor de Ciencias Naturales y Biología, desempeñando además el rol de Coordinador de Proyectos de Investigación.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="formacion" class="container">
+        <h2><i class="fa-solid fa-award"></i> Educación y Credenciales</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-date">2018 - En Curso</div>
+                <h3 class="card-title">Doctorado en Gestión de Investigación, Desarrollo e Innovación</h3>
+                <h4 class="card-subtitle">Universidad Central de Venezuela</h4>
+            </div>
+
+            <div class="card">
+                <div class="card-date">2005</div>
+                <h3 class="card-title">Licenciado en Biología</h3>
+                <h4 class="card-subtitle">Universidad Central de Venezuela</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Mención especial en Biología Celular.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-date">Especializaciones y Otros Títulos</div>
+                <h3 class="card-title">Estudios de Postgrado y Gestión</h3>
+                <h4 class="card-subtitle">Gerencia y Formación Institucional</h4>
+                <div class="info-badge-container">
+                    <span class="badge">Curso Gerencia de Servicios de Salud (CIU - CIDEC)</span>
+                    <span class="badge">Diplomado Gerencia Servicios de Salud (UPEL)</span>
+                    <span class="badge">Oficial de La Armada Nacional de Venezuela (Postgrado Armada)</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contacto" class="container">
+        <h2><i class="fa-solid fa-envelope"></i> Red de Contacto</h2>
+        <div class="contact-wrapper">
+            
+            <div class="contact-item">
+                <i class="fa-solid fa-paper-plane"></i>
+                <div class="contact-text">
+                    <h4>Correo Electrónico</h4>
+                    <p><a href="mailto:jmelero82@gmail.com">jmelero@mochimalab.com</a></p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-brands fa-instagram"></i>
+                <div class="contact-text">
+                    <h4>Redes Sociales</h4>
+                    <p><a href="https://instagram.com/jmelero82" target="_blank">@jmelero82</a></p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div class="contact-text">
+                    <h4>Ubicación Principal</h4>
+                    <p>Caracas, Venezuela</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Jesús Melero-Gomez. Todos los derechos reservados.</p>
+        <p style="font-size: 0.75rem; color: rgba(0, 242, 254, 0.4); margin-top: 0.5rem;">Diseño sincronizado con la identidad visual de Mochima Lab</p>
+    </footer>
+
+</body>
+</html>
